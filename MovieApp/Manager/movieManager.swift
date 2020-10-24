@@ -4,7 +4,7 @@
 //
 //  Created by sayali on 22/10/20.
 //  Copyright © 2020 sayali. All rights reserved.
-//https://image.tmdb.org/t/p/h100/7D430eqZj8y3oVkLFfsWXGRcpEG.jpg
+
 
 import Foundation
 import Alamofire
@@ -31,8 +31,7 @@ enum WeatherError: Error, LocalizedError {
 struct movieManager {
     
     private let API_KEY = "7bfe007798875393b05c5aa1ba26323e"
-    
-    
+
     func fetchWeather(completion: @escaping (Result<movieModel, Error>) -> Void) {
         let path = "https://api.themoviedb.org/3/movie/now_playing?api_key=%@&language=en-US&page=1"
         let urlString = String(format: path, API_KEY)
@@ -68,6 +67,5 @@ struct movieManager {
             return nil
         }
     }
-    
 }
 
