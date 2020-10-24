@@ -10,10 +10,6 @@ import Foundation
 
 struct movieModel : Decodable {
     var results  : [results]
-    
-    var model: movieDataModel {
-        return movieDataModel(poster_path: results.first?.poster_path ?? "", title: results.first?.title ?? "")
-       }
 }
 
 struct results : Decodable {
@@ -21,8 +17,3 @@ struct results : Decodable {
     var title: String
 }
 
-struct movieDataModel {
-
-let poster_path: String
-let title: String
-}

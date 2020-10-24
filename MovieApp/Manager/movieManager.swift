@@ -30,26 +30,15 @@ enum WeatherError: Error, LocalizedError {
 
 struct movieManager {
     
-    private let API_KEY = "396d1188a1278dffdd85fcfa82622d62"
+    private let API_KEY = "7bfe007798875393b05c5aa1ba26323e"
     
     
     func fetchWeather(completion: @escaping (Result<movieModel, Error>) -> Void) {
-        //let query = city.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? city
-        
         let path = "https://api.themoviedb.org/3/movie/now_playing?api_key=%@&language=en-US&page=1"
         let urlString = String(format: path, API_KEY)
         handleRequest(urlString: urlString, completion: completion)
     }
-    
-//    
-//    func fetchposterImage(imageStr: String, completion: @escaping (Result<WeatherModel, Error>) -> Void) {
-//        let query = imageStr.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? imageStr
-//        let path = "https://image.tmdb.org/t/p/h100"
-//        let urlString = String(format: path, query, API_KEY)
-//        handleRequest(urlString: urlString, completion: completion)
-//    }
-    
-    
+
     private func handleRequest(urlString: String, completion: @escaping (Result<movieModel, Error>) -> Void) {
         
         AF.request(urlString)
@@ -70,7 +59,7 @@ struct movieManager {
     }
     
     private func getMovieError(error: AFError, data: Data?) -> Error? {
-        if error.responseCode == 404,
+        if error.responseCode == 7,
             let data = data,
             let failure = try? JSONDecoder().decode(MovieDataFailure.self, from: data) {
             let message = failure.message
